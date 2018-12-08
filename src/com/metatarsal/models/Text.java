@@ -12,6 +12,7 @@ public class Text {
 
     public Text(String plainTxt) {
         this.plainTxt = plainTxt;
+        this.txtLength = plainTxt.length();
     }
 
     public String getPlainTxt() {
@@ -32,9 +33,5 @@ public class Text {
 
     public int getTxtLength() {
         return txtLength;
-    }
-
-    public void setTxtLength() {
-        this.txtLength = plainTxt.length();
     }
 }
