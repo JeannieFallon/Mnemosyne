@@ -15,16 +15,19 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
         String inputTxt;
-        int shiftVal = 0;
+        int shiftVal;
 
-        System.out.println("Enter the text to be enciphered:\n");
+        // get plaintext from user
+        System.out.println("Enter the text to be enciphered:");
         inputTxt = scan.nextLine();
 
-        //TODO loop validation
+        // get shift val from user
         System.out.println("Enter the shift value:");
-        if (scan.hasNextInt()) {
-            shiftVal = scan.nextInt();
+        while (!scan.hasNextInt()) {
+            System.out.println("Please enter an integer for the shift value:");
+            scan.next();
         }
+        shiftVal = scan.nextInt();
 
         scan.close();
 
