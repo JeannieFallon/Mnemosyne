@@ -11,14 +11,19 @@ public class Main {
         CaesarController caesarController = new CaesarController();
         Scanner scanner = new Scanner(System.in);
 
+        //TODO validate input
         System.out.println("Enter the text to be enciphered:\n");
+        String inputTxt = scanner.nextLine();
 
-        String input = scanner.nextLine();
-        Text text = new Text(input);
+        System.out.println("Enter the shift value: ");
+        int shiftVal = scanner.nextInt();
+
+        Text text = new Text(inputTxt, shiftVal);
         text = caesarController.goCaesarCipher(text);
 
-        System.out.println("Plain text: " + text.getPlainTxt());
-        System.out.println("Cipher text: " + text.getCipherTxt());
-        System.out.println("Length of text: " + text.getTxtLength());
+        //TODO string builder?
+        System.out.println("Plain text: " + text.getPlainTxt() +
+                            "\nCipher text: " + text.getCipherTxt() +
+                            "\nShift value: " + text.getShiftVal());
     }
 }

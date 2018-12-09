@@ -5,14 +5,16 @@ public class Text {
     private String plainTxt;
     private String cipherTxt;
     private int txtLength;
+    private int shiftVal;
 
     public Text() {
 
     }
 
-    public Text(String plainTxt) {
+    public Text(String plainTxt, int shiftVal) {
         this.plainTxt = plainTxt;
         this.txtLength = plainTxt.length();
+        this.shiftVal = shiftVal;
     }
 
     public String getPlainTxt() {
@@ -33,5 +35,9 @@ public class Text {
 
     public int getTxtLength() {
         return txtLength;
+    }
+
+    public int getShiftVal() {
+        return shiftVal;
     }
 }
