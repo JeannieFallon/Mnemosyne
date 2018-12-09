@@ -7,23 +7,37 @@ public class Main {
 
 
     public static void main(String[] args) {
+        caesar();
+    }
 
+    public static void caesar() {
         CaesarController caesarController = new CaesarController();
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+        String inputTxt;
+        int shiftVal = 0;
 
-        //TODO validate input
         System.out.println("Enter the text to be enciphered:\n");
-        String inputTxt = scanner.nextLine();
+        inputTxt = scan.nextLine();
 
-        System.out.println("Enter the shift value: ");
-        int shiftVal = scanner.nextInt();
+        //TODO loop validation
+        System.out.println("Enter the shift value:");
+        if (scan.hasNextInt()) {
+            shiftVal = scan.nextInt();
+        }
+
+        scan.close();
 
         Text text = new Text(inputTxt, shiftVal);
         text = caesarController.goCaesarCipher(text);
 
-        //TODO string builder?
-        System.out.println("Plain text: " + text.getPlainTxt() +
-                            "\nCipher text: " + text.getCipherTxt() +
-                            "\nShift value: " + text.getShiftVal());
+        sb.append("Plain text: ");
+        sb.append(text.getPlainTxt());
+        sb.append("\nCipher text: ");
+        sb.append(text.getCipherTxt());
+        sb.append("\nShift value: ");
+        sb.append(text.getShiftVal());
+
+        System.out.println(sb);
     }
 }
