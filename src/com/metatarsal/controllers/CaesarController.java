@@ -3,6 +3,10 @@ import com.metatarsal.models.Text;
 
 public class CaesarController {
 
+/*
+* Run Caesar cipher on input text string using input integer as shift value.
+* 09 Dec 18 - Working draft
+* */
     public Text goCaesarCipher(Text text) {
         String cipherTxt = "";
         int txtLen = text.getTxtLength();
@@ -21,28 +25,41 @@ public class CaesarController {
     }
 
     public String shiftChar(char charToShift, int shiftVal) {
-        int plainAscii = (int)charToShift;
-        int cipherAscii = getCipherAscii(plainAscii, shiftVal);
-        //TODO fix conversion
-        String newChar = Character.toString((char)cipherAscii);
+        String cipherChar;
+        int asciiVal = (int)charToShift;
+        int alphaDiffVal = 0;
+        boolean isShift = false;
 
-        return newChar;
-    }
-
-    public int getCipherAscii(int asciiVal, int shiftVal) {
-
-        // only rotate upper and lower case letters in text
+        // only shift upper or lower case letters in text
         if (asciiVal >= 97 && asciiVal <= 122) {
-            asciiVal = getRotation((asciiVal - 97), shiftVal);
+            isShift = true;
+            alphaDiffVal = 97;
         } else if (asciiVal >= 65 && asciiVal <= 90) {
-            asciiVal = getRotation((asciiVal - 65), shiftVal);
+            isShift = true;
+            alphaDiffVal = 65;
         }
 
-        return asciiVal;
+        if (isShift) {
+            asciiVal = getCipherAscii(asciiVal, alphaDiffVal, shiftVal);
+        }
+
+        //TODO make more efficient by returning int & converting up one level
+        // get rid of duplicate String initialization
+        cipherChar = Character.toString((char)asciiVal);
+
+        return cipherChar;
     }
 
-    public int getRotation(int alphaIdx, int key) {
-        //TODO fix rotation
-        return (alphaIdx + key) % 26;
+    public int getCipherAscii(int asciiVal, int alphaDiffVal, int shiftVal) {
+        // get index of letter, assuming standard alphabet a - z with indices 0 - 25
+        int alphaIdx = asciiVal - alphaDiffVal;
+        // wrap rotation around standard alphabet
+        alphaIdx = getRotation(alphaIdx, shiftVal);
+        // return to original ASCII range
+        return alphaIdx + alphaDiffVal ;
+    }
+
+    public int getRotation(int alphaIdx, int shiftVal) {
+        return (alphaIdx + shiftVal) % 26;
     }
 }
