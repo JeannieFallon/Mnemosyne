@@ -2,8 +2,6 @@ package com.metatarsal.controllers;
 import com.metatarsal.constants.CipherConstants;
 import com.metatarsal.models.Text;
 
-import javax.crypto.Cipher;
-
 public class CaesarController {
 
 /*
