@@ -11,12 +11,10 @@ public class CaesarController {
 
     public Text goCaesarCipher(Text text) {
         StringBuilder sb = new StringBuilder(); //use StringBuffer instead?
-        int txtLen = text.getTxtLength();
         int shiftVal = text.getShiftVal();
-        char[] charArr = text.getPlainTxt().toCharArray();
 
-        for (int i = 0; i < txtLen; i++) {
-            sb.append(shiftChar(charArr[i], shiftVal));
+        for (char currChar : text.getPlainTxt().toCharArray()) {
+            sb.append(shiftChar(currChar, shiftVal));
         }
 
         text.setCipherTxt(sb.toString());
